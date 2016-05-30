@@ -150,8 +150,6 @@
 							<a href="{{ 'email'|link }}/{{email.id}}" class="list-group-item">
 								{{email.subject|truncate(30)}} <small>- {{ email.created_at|timeago }} {% trans 'ago' %}</small>
 							</a>
-							{% else %}
-								{% trans 'The list is empty' %}
 							{% endfor %}
 						</div>
 					</div>
