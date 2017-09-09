@@ -1,8 +1,6 @@
 # Bootstrap theme for BoxBilling
 
-This is an easily customisable Bootstrap theme for BoxBilling.
-
-![Dashboard](https://framapic.org/pwGGIsDG9g5v/GyObwZB9W4dm)
+This is an easily customisable Bootstrap theme for BoxBilling. This theme looks is based on WHMCS.
 
 Please report issues and suggestions within this git. The theme is licensed under GPLv3 so please feed back your improvements to this git.
 
@@ -18,7 +16,3 @@ Please report issues and suggestions within this git. The theme is licensed unde
 ## Installation
 - Copy the "bootstrap" folder in *bb-themes*
 - Configure the theme
-
-![Order](https://framapic.org/9hHZFbG1NY9t/iukgZlrehmWv)
-
-![Services](https://framapic.org/JH2twTKmobr9/AQ8wm8RzN4vb)
