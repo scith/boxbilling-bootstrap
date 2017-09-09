@@ -1,0 +1,126 @@
+.navbar-inverse {
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding-top: 10px;
+}
+
+body {
+	padding-top: 0;
+}
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+	background: none;
+	color: #888;
+	text-decoration: underline;
+}
+
+.navbar-inverse .navbar-nav>li>a
+{
+	color: #888;
+	text-shadow: none;
+	font-size: 12px;
+}
+
+.nav>li>a {
+	padding: 5px 10px;
+}
+
+.navbar2 {
+	background: #006687;	
+	margin-bottom: 30px;
+}
+
+.navbar2 .list-group {
+	margin-bottom: 0;
+}
+
+.navbar2 .list-group:after {
+	content: "";
+	clear: both;
+	display: block;
+}
+
+.navbar2 .list-group-item {
+	float: left;
+	border: none;
+	background: none;
+}
+
+.navbar2 a.list-group-item, .navbar2 button.list-group-item {
+	color: #fff;	
+}
+
+.navbar2 .list-group-item.active, .navbar2 .list-group-item.active:hover, .navbar2 .list-group-item.active:focus {
+	background: none;
+}
+
+.navbar2 a.active.list-group-item:hover {
+	background: #fff;
+	color: #555;
+}
+
+.navbar2 a.list-group-item:hover, 
+.navbar2 button.list-group-item:hover, 
+.navbar2 a.list-group-item:focus, 
+.navbar2 button.list-group-item:focus {
+	color: #555;
+}
+
+.navbar2 .float-right  {
+	float: right;
+}
+.page-header {
+	margin-top: 0;
+	font-size: 25px;
+	color: #033c73;
+}
+
+.panel-default>.panel-heading {
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+}
+
+.fullname {
+	font-weight: bold;
+	color: #000;
+	margin-bottom: 10px;
+}
+
+.layanan a:hover {
+	text-decoration: none;
+	background: #f3f3f3
+}
+
+.layanan a {
+	display: block;
+	color: #777;
+	border-top: solid 1px #ccc;
+	padding: 5px;
+	font-size: 12px;
+	padding-left: 20px;
+}
+
+.panel-body.layanan {
+	padding: 0;
+}
+
+.panel-body.categories {
+	padding: 0;
+}
+
+.panel-body.categories a {
+	display: block;
+	color: #777;
+	border-top: solid 1px #ccc;
+	padding: 5px;
+	font-size: 13px;
+	padding-left: 20px;
+}
+
+.panel-body.categories a:hover,
+.panel-body.categories a:focus {
+	text-decoration: none;
+	background: #006687;
+	color: #fff;
+}

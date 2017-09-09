@@ -81,6 +81,21 @@
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
+
+        <script>
+        	jQuery(document).ready(function($) {
+        		$('#sidebar3').prepend(`
+        			<div class="panel panel-default">
+        			  <div class="panel-heading"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Categories </div>
+        			  <div class="panel-body categories">
+        			  	{% for i, category in guest.product_category_get_list.list %}
+        			  		<a href="#{{ category.title }}">{{ category.title }}</a>
+        			  	{% endfor %}
+        			  </div>
+        			</div>
+        			`)		
+        	});
+        </script>
 		
 {% endblock %}
 
@@ -89,3 +104,4 @@
 		{% include 'partial_currency.phtml' %}
 	</div>
 {% endblock %}
+

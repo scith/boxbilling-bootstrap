@@ -2,6 +2,7 @@
 {% extends request.ajax or (not client and settings.home_page != "menuicons") ? "layout_blank.phtml" : "layout_default.phtml" %}
 {% block meta_title %}{% trans 'Client Area' %}{% endblock %}
 {% import "macro_functions.phtml" as mf %}
+{% set profile = client.client_get %}
 
 {% if not settings.home_sidemenu %}
 	{% if not client %}{% set side_menu = 'hidden' %}{% endif %}
@@ -12,7 +13,7 @@
 	{% if client %}
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">{% trans 'Dashboard' %}</h1>
+				<h1 class="page-header">Selamat Datang Kembali, {{ profile.first_name }} {{ profile.last_name }} </h1>
 			</div>
 		</div>	
 	{% else %}

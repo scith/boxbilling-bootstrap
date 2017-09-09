@@ -1,4 +1,5 @@
 {% set company  = guest.system_company %}
+{% set profile = client.client_get %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +36,9 @@
 
     <!-- Custom Fonts -->
     <link href="{{ 'font-awesome/css/font-awesome.min.css' | asset_url }}" rel="stylesheet" type="text/css">
+	
+    <!-- Custom CSS -->
+    <link href="{{ 'css/bimasoft.css' | asset_url }}" rel="stylesheet" type="text/css">
 	
 	<!-- jQuery -->
     <script src="{{ 'js/jquery.js' | asset_url }}"></script>
@@ -89,7 +93,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{''|link }}">{{company.name}}</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="mainmenu">
@@ -107,7 +110,6 @@
 						{% if settings.side_menu_support %}<li class="visible-xs"><a href="{{ 'support'|link }}" title="{% trans 'Tickets' %}"><i class="fa fa-life-ring"></i> {% trans 'Support' %}</a></li>{% endif %}
 						{% if settings.side_menu_invoices %}<li class="visible-xs"><a href="{{ 'invoice'|link }}" title="{% trans 'Invoices' %}"><i class="fa fa-credit-card"></i> {% trans 'Invoices' %}</a></li>{% endif %}
 						<li><a href="{{ ''|link }}" title="{% trans 'Dashboard' %}"><i class="fa fa-home"></i> {% trans 'Dashboard' %}</a></li>
-						<li><a href="{{ 'cart'|link }}" title="{% trans 'Shopping cart' %}"><i class="fa fa-shopping-cart"></i> {% trans 'Shopping cart' %}</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ (profile.first_name ~ " " ~ profile.last_name) }} <span class="caret"></span></a>
 							<ul class="dropdown-menu">
@@ -118,8 +120,8 @@
 							</ul>
 						</li>
 					{% else %}			
-						<li><a href="" data-toggle="modal" data-target="#login">{% trans 'Sign in' %}</a></li>
-						<li><a href="{{ 'login'|link({'register' : 1}) }}">{% trans 'Register' %}</a></li>
+						<li><a href="" data-toggle="modal" data-target="#login"><i class="fa fa-user"></i> {% trans 'Sign in' %}</a></li>
+						<li><a href="{{ 'login'|link({'register' : 1}) }}"><i class="fa fa-user-plus"></i> {% trans 'Register' %}</a></li>
 					{% endif %}
 				</ul>
             </div>
@@ -131,18 +133,28 @@
 {% block content_banner %}{% endblock %}
 <div class="container">
 	<div class="row">
-		<div class="col-sm-12">
-			
+		<div class="col-md-12">
+			{% if company.logo_url %}<h1><a href="{{ ''|link }}"><img src="{{company.logo_url}}" alt="{{company.name}}" class="img-responsive" /></a></h1>
+			{% else %}<h1><a href="{{ ''|link }}"><img src=" {{ 'images/logo_new.svg' | asset_url }}" alt="{{company.name}}" class="img-responsive" /></a></h1>
+			{% endif %}			
 		</div>
-		
+	</div>
+</div>
+<div class="navbar2">
+	<div class="container">
+		<div class="row">
+			<div class="hidden-xs">{% include "partial_menu.phtml" %}</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+
 	{% if side_menu == 'hidden' %}
 		<div class="col-sm-12">
 	{% else %}
-		<div class="col-sm-3">
-			{% if company.logo_url %}<h1><a href="{{ ''|link }}"><img src="{{company.logo_url}}" alt="{{company.name}}" class="img-responsive center-block" /></a></h1>
-			{% else %}<h1><a href="{{ ''|link }}"><img src=" {{ 'images/logo.png' | asset_url }}" alt="{{company.name}}" class="img-responsive center-block" /></a></h1>
-			{% endif %}
-			<div class="hidden-xs">{% include "partial_menu.phtml" %}</div>
+		<div class="col-sm-3" id="sidebar3">
+			
 
 			<!--{% set languages = guest.extension_languages %}
 				{% if languages|length > 1 %}
@@ -154,16 +166,37 @@
 							</select>
 				{% endif %}-->
 			
-			{% block sidebar %}{% endblock %}
-			
+
+
+			<div class="panel panel-default">
+			  <div class="panel-heading"><i class="fa fa-user"></i>&nbsp;&nbsp;Informasi Anda</div>
+			  <div class="panel-body">
+			  	<div class="fullname">{{ profile.first_name }} {{ profile.last_name }}</div>
+			  	<div>{{ profile.address_1 }}</div>
+			  	<div>{{ profile.address_2 }}</div>
+			  	<div>{{ profile.city }}</div>
+			  	<div>{{ profile.state }}</div>
+			  	<div>{{ profile.postcode }}</div>
+			  	<div>{{ profile.country }}</div>
+			  </div>
+			</div>			
+
+			<div class="panel panel-default">
+			  <div class="panel-heading"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;Shortcuts</div>
+			  <div class="panel-body layanan">
+			  		  <a href="{{ '/order'|link }}"><i class="fa fa-shopping-cart fa-fw"></i> Pesan Layanan Baru</a>
+  					  <a href="{{ '/order/domain-checker'|link }}"><i class="fa fa-globe fa-fw"></i> Daftarkan Domain Baru
+  					  <a href="{{ 'client/logout'|link }}"><i class="fa fa-arrow-left fa-fw"></i> Logout
+			  </div>
+			</div>			
+
 			{% if settings.sidebar_note_enabled %}
-            <div class="well well-sm">
-                <h4>{{ settings.sidebar_note_title }}</h4>
-                <p>{{ settings.sidebar_note_content }}</p>
-            </div>
             {% endif %}	
-			
-			{% block sidebar2 %}{% endblock %}
+
+			{% if false %}
+				{% block sidebar %}{% endblock %}
+				{% block sidebar2 %}{% endblock %}
+			{% endif %}
 		</div>
 		<div class="col-sm-9">
 	{% endif %}	
