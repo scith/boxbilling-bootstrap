@@ -417,6 +417,170 @@ a, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .order_period {
 	display: block;
+	font-size: 11px;
+	color: #999999;
+}
+
+table.dataTable thead th {
+    background-color: #E6ECEF;
+    border-bottom: 1px solid #ccc;
+    color: #333;
+    font-size: 13px;
+    text-align: center;
+}
+
+.dataTables_wrapper .dataTables_filter {
+	background-color: #006587;
+	border: 0;
 	font-size: 12px;
-	color: #ccc;
+	border-radius: 4px 4px 0 0;
+	padding: 9px 10px;
+	color: #006587;
+	float: none;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+	font-weight: normal;
+	color: #333;
+	border: none;
+	padding: 4px 10px;
+	border-radius: 3px;
+}
+
+.dataTables_wrapper .dataTables_filter label {
+	margin-bottom: 0;
+}
+
+.dataTables_wrapper .dataTables_length label {
+	padding: 10px;
+	padding-left: 15px;
+	font-weight: normal;
+	color: #fff;
+	padding-bottom: 0;
+}
+
+.dataTables_wrapper .dataTables_length label select {
+	color: #555555;
+	border: none;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+.dataTables_wrapper {
+}
+
+.dataTables_wrapper td {
+	background: #FAFAFA;
+}
+
+
+table.dataTable.no-footer {
+	border : 1px  solid #ccc;
+	border-radius: 6px;
+	border-bottom: 7px solid #ccc;
+	border-top-left-radius : 0;
+	border-top-right-radius: 0;
+}
+
+table.dataTable.no-footer > tbody > tr:nth-child(odd) > td {
+	background: #FAFAFA;
+}
+
+table.dataTable.no-footer td {
+	border-top: solid 1px #ddd;
+	font-size: 12px;
+	padding: 5px 10px;
+	text-align: center;
+}
+
+table.dataTable.no-footer td span.label {
+	width : 105px;
+	display: block;
+	padding: 7px 10px;
+	font-weight: normal;
+	font-size: 11px;
+	border-radius : 0;
+}
+
+table.dataTable.no-footer td:first-child {
+	text-align: left;
+}
+
+table.dataTable.no-footer > tbody > tr:nth-child(even) > td {
+	background: #FFF;
+}
+
+.dataTables_info {
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+	border : solid 1px #ccc;
+	margin: 0;
+	font-size : 11px;
+	padding: 5px 10px;
+	margin-right: -1px;
+	border-radius: 0;
+	color: #aaa;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+	cursor: not-allowed;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	margin: 0;
+	margin-right: -1px;
+	background: #006687;
+	color: #fff !important;
+	border-top: solid 1px #006687;
+	border-radius: 0;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+	background: #EEE;
+	border : solid 1px #ccc;
+}
+
+.dataTables_wrapper .dataTables_paginate .previous.paginate_button.disabled, 
+.dataTables_wrapper .dataTables_paginate .previous.paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .previous.paginate_button,
+.dataTables_wrapper .dataTables_paginate .previous.paginate_button.disabled {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.dataTables_wrapper .dataTables_paginate .next.paginate_button.disabled, 
+.dataTables_wrapper .dataTables_paginate .next.paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .next.paginate_button,
+.dataTables_wrapper .dataTables_paginate .next.paginate_button.disabled {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+	padding-top: 10px;
+	padding-right: 3px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+	color: #777 !important;
+}
+
+
+.dtt td a {
+	color: #555555;
+}
+
+.domain_tld {
+	display: block;
+	font-size: 11px;
+	color: #033c73;
 }

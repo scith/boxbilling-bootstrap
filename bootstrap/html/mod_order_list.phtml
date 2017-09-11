@@ -15,7 +15,7 @@
 {% endblock %}
 {% block content %}
 
-        <table>
+        <table class="dtt">
             <thead>
                 <tr>
                     <th>Product / Services</th>
@@ -28,7 +28,25 @@
                 {% set orders = client.order_get_list({"hide_addons":1}) %}
                 {% for i, order in orders.list %}
                 <tr>
-                    <td><a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}</a></td>
+                    <td>
+                    {% if order.config.domain.owndomain_sld %}
+                        <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+                        <span class='domain_tld'>{{ order.config.domain.owndomain_sld }}{{ order.config.domain.owndomain_tld }}</span>
+                    {% else %}
+                        {% if order.config.domain.register_sld %}
+                            <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+                            <span class='domain_tld'>{{ order.config.domain.register_sld }}{{ order.config.domain.register_tld }}</span>
+                        {% else %}
+                            {% if order.config.register_sld %}
+                                <a href="{{ '/order/service/manage'|link }}/{{order.id}}">Domain Registration
+                                <span class='domain_tld'>{{ order.config.register_sld }}{{ order.config.register_tld }}</span>
+                            {% else %}
+                                <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                    </a></td>
                     <td>{{  order.total | money(order.currency) }} {% if order.period%}<span class="order_period">{{ order.period | period_title }}</span>{% endif %}</td>
                     <td>{{order.expires_at|date('d-m-Y')}}</td>
                     <td><span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span></td>
@@ -37,5 +55,24 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <script>
+            jQuery(document).ready(function($) {
+                $('.dtt tr').each(function(index, el) {
+                    str = $(this).find('td').eq(0).html();
+                    if (str) {
+                        if ( str.indexOf('for') > 0 ) {
+                            start = str.indexOf('for');
+                            end = str.indexOf('span');
+                            console.log(end);
+                            a = str.substring (1,start);
+                            b = str.substring (end-1);
+                            $(this).find('td').eq(0).html(a + b);
+                        }
+                    }
+                    str = null;
+                });
+            });
+        </script>
 
 {% endblock %}
