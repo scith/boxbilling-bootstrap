@@ -369,3 +369,48 @@ a:hover {
 .list-group-item.category-group-item {
 	border: none;
 }
+
+.product_frame {
+	border: solid 1px #ccc;
+	padding: 15px;
+	border-radius: 10px;
+	margin-bottom: 25px;
+}
+
+.btn.btn-primary,
+.btn.btn-primary-blue {
+	background: #006687;
+	color: #fff;
+}
+
+h4.order_title {
+	color: #033c73;
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.starting_price {
+	font-size: 24px;
+	font-weight: normal;
+	color: #333;
+}
+
+.btn.btn-order {
+	background: #337ab7;
+}
+
+.starting_price.form-control {
+	height: auto;
+	font-size: 18px;
+	padding: 10px;
+	margin-top: 5px;
+}
+
+.product_frame.list-group-item-text {
+	line-height: 1.3em;
+}
+
+a, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	color: #033c73;
+}

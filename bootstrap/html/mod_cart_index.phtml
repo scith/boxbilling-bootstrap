@@ -81,7 +81,7 @@
 							{% if cart.promocode %}
 								<a href="{{ 'api/guest/cart/remove_promo'|link }}" class="btn btn-danger btn-sm api-link" data-api-reload="1">{% trans 'Reset' %}</a>
 							{% else %}
-								<button class="btn btn-primary btn-sm" type="submit">{% trans 'Apply' %}</button>
+								<button class="btn btn-primary-blue btn-sm" type="submit">{% trans 'Apply' %}</button>
 							{% endif %}
 						</form></p><br />
 					</div>
@@ -122,7 +122,7 @@
 								<p>{% trans 'Total amount will be deducted from account balance' %}</p>
 								{% endif %}
 							</div>
-							<p><button class="btn btn-success btn-lg" type="submit"><i class="fa fa-shopping-cart"></i> {% trans 'Checkout' %} {{ (cart.total + tax_amount) | money_convert }}</button></p>
+							<p><button class="btn btn-primary-blue btn-lg" type="submit"><i class="fa fa-shopping-cart"></i> {% trans 'Checkout' %} {{ (cart.total + tax_amount) | money_convert }}</button></p>
 						</form>
 						{% else %}	
 						<div class="text-right"><strong>{% trans 'Total:' %}</strong> {{ (cart.total + tax_amount) | money_convert }} ({% trans 'No VAT'%})</div>	
