@@ -44,19 +44,26 @@
 					<div class="tiles clearfix">
 						<div class="row">
 							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=services'">
-								<a href="clientarea.php?action=services">
+								<a href="{{ '/order/service' | link }}">
 									<div class="icon"><i class="fa fa-cube"></i></div>
-									<div class="stat">
-									{{ client.order_get_list().total }}
+									<div class="stat" id="service-stat">
+									<span style="color:#eee">0</span>
 									</div>
 									<div class="title">Services</div>
 									<div class="highlight bg-color-blue"></div>
 								</a>
 							</div>
+							{% set services = client.order_get_list({"status":"active"}) %}
+							<div id="service-all">
+							{% for i, service in services.list %}
+							<div class="service-list">{{ service.title }}</div>
+							{% endfor %}
+							</div>
+
 							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=domains'">
-								<a href="clientarea.php?action=domains">
+								<a href="{{ '/order/service' | link }}">
 									<div class="icon"><i class="fa fa-globe"></i></div>
-									<div class="stat">0</div>
+									<div class="stat" id="domain-stat"><span style="color:#eee">0</span></div>
 									<div class="title">Domains</div>
 									<div class="highlight bg-color-green"></div>
 								</a>
@@ -64,7 +71,12 @@
 							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='supporttickets.php'">
 								<a href="supporttickets.php">
 									<div class="icon"><i class="fa fa-comments"></i></div>
-									<div class="stat">0</div>
+									<div class="stat">
+									{% set a = client.support_ticket_get_list({"status":'on_hold'}).total %}
+									{% set b = client.support_ticket_get_list({"status":'open'}).total %}
+									{% set c = a + b %}
+									{{ c }}
+									</div>
 									<div class="title">Tickets</div>
 									<div class="highlight bg-color-red"></div>
 								</a>
@@ -383,5 +395,23 @@
 		{% elseif settings.home_page == "kb" %}
 			{% include "mod_kb_index.phtml" %}
 		{% endif %}
+
 	{% endif %}
+	<script>
+		jQuery(document).ready(function($) {
+			var service_count = 0;
+			var domain_count = 0;
+			$('.service-list').each(function(index, el) {
+				s = $(this).text();
+				if ( s.indexOf('Domain')>=0 ) {
+					domain_count++;
+				} else {
+					service_count++;
+				}
+			});
+
+			$('#service-stat').html(service_count);
+			$('#domain-stat').html(domain_count);
+		});
+	</script>
 {% endblock %}

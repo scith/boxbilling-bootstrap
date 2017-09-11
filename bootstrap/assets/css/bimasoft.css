@@ -2,11 +2,12 @@
 	background: none;
 	border: none;
 	box-shadow: none;
-	padding-top: 10px;
+	margin-bottom: 0;
+	min-height: 0;
 }
 
 body {
-	padding-top: 0;
+	padding-top: 10px;
 }
 .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
 	background: none;
@@ -345,4 +346,26 @@ a:hover {
 .footer-btn:hover {
 	background: #398439;
 	color: #fff; 
+}
+
+#my-accounts-panel ul {
+	list-style: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.list-group-item:last-child, .list-group-item:first-child {
+	border-radius: 0;
+}
+
+#service-all {
+	display: none;
+}
+
+#company-logo h1 {
+	margin-top: -20px;
+}
+
+.list-group-item.category-group-item {
+	border: none;
 }
