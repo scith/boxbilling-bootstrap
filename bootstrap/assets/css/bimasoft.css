@@ -124,3 +124,225 @@ body {
 	background: #006687;
 	color: #fff;
 }
+
+.panel-primary>.panel-heading#replyticket {
+	background: #d9edf7;
+	color : #31708f;
+	font-weight: bold;
+}
+
+.panel.panel-techsupport {
+	border: 1px solid #CCE4FC;	
+}
+
+
+
+.panel.panel-techsupport .panel-heading {
+	background: #F2F9FF;
+}
+
+.panel.panel-client {
+	border: 1px solid #ccc;
+}
+
+.panel.panel-client .panel-heading {
+	background: #f8f8f8;
+}
+
+#ticketinfo {
+	font-size: 14px;
+}
+
+#ticketinfo p {
+	margin : 0;
+	padding: 8px 15px;
+}
+
+#ticketinfo p:nth-child(even) {
+	background: #efefef;
+}
+
+#ticket-info-footer {
+	text-align: center;
+}
+
+#ticket-info-footer .btn {
+	padding : 5px 15px;
+}
+
+#close-ticket-a {
+	display: none;
+}
+
+.tiles {
+	margin : 0 15px 15px 15px;
+}
+
+.tiles .tile {
+    padding: 12px 20px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #ccc;
+}
+
+.tile .icon {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 48px;
+	line-height: 1;
+	color: #ccc;
+}
+
+.tile .stat {
+    margin-top: 20px;
+    font-size: 40px;
+    line-height: 1;
+}
+
+a .stat {
+	color: #058;
+}
+
+.tile .title {
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.tiles .tile:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.tiles .tile .highlight {
+    margin-top: 4px;
+    height: 2px;
+    border-radius: 2px;
+}
+
+.bg-color-blue {
+    background-color: #5bc0de;
+}
+
+.bg-color-green {
+    background-color: #5cb85c;
+}
+
+.bg-color-red {
+    background-color: #d9534f;
+}
+
+.bg-color-gold {
+    background-color: #f0ad4e;
+}
+
+.tiles a:hover, 
+.tiles a:focus {
+    color: #157ab5;
+    text-decoration: none;
+}
+
+.client-home-panels .panel-default>.panel-heading {
+    background-color: #fff;
+    border-color: #ddd;
+    padding: 10px 15px;
+}
+
+.client-home-panels .panel-default>.panel-heading h4 {
+	color: #333;
+	font-weight: bold;
+	font-size: 16px;
+	margin: 0;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.last-updated {
+	display: block;
+	font-size: 12px;
+	color: #888;
+	margin-top: 3px;
+}
+
+#dashboard-support .list-group-item {
+	padding: 5px 10px;
+}
+
+.bg-color-gold {
+	background: #f0ad4e;
+}
+
+.panel.panel-accent-gold {
+	border-top: 3px solid #f0ad4e;
+}
+
+.panel.panel-accent-red {
+	border-top: 3px solid #c71c22;
+}
+
+.panel.panel-accent-blue {
+    border-top: 3px solid #5bc0de;
+}
+
+.panel.panel-accent-green {	
+    border-top: 3px solid #468847;
+}
+
+.panel.panel-accent-grey {
+    border-top: 3px solid #999999;
+}
+
+.home-kb-search .form-control {
+    background-color: #444;
+    color: #fff;
+    padding-left: 50px;
+    width: 100%;
+    border-radius: 6px !important;
+    border: 0;
+    padding: 11px 50px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.home-kb-search i {
+    position: absolute;
+    left: 17px;
+    color: #777;
+    top: 14px;
+    z-index: 20;
+    font-size: 18px;;
+}
+
+.home-kb-search .input-group {
+	width: 100%;
+	position: relative;
+}
+
+
+.dash-news a {
+	font-size: 12px;
+	text-align: left;
+}
+
+.dash-news a.list-group-item {
+	padding: 5px 15px;
+	color: #555;
+}
+
+.footer-btn {
+	display: block; 
+	width: 100%; 
+	padding: 7px; 
+	color: #fff; 
+	background: #5cb85c;
+	font-size:12px;
+	border-radius: 4px;
+}
+
+.footer-btn:hover {
+	background: #398439;
+	color: #fff; 
+}

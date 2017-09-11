@@ -167,7 +167,7 @@
 				{% endif %}-->
 			
 
-
+			{% if profile.first_name %}
 			<div class="panel panel-default">
 			  <div class="panel-heading"><i class="fa fa-user"></i>&nbsp;&nbsp;Informasi Anda</div>
 			  <div class="panel-body">
@@ -179,14 +179,20 @@
 			  	<div>{{ profile.postcode }}</div>
 			  	<div>{{ profile.country }}</div>
 			  </div>
+			  <div class="panel-footer" align="center">
+			  	<a class="footer-btn" href="{{ '/client/me' | link }}" ><i class="fa fa-pencil"></i>&nbsp;&nbsp;Update</a>
+			  </div>
 			</div>			
+			{% endif %}
 
 			<div class="panel panel-default">
 			  <div class="panel-heading"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;Shortcuts</div>
 			  <div class="panel-body layanan">
 			  		  <a href="{{ '/order'|link }}"><i class="fa fa-shopping-cart fa-fw"></i> Pesan Layanan Baru</a>
-  					  <a href="{{ '/order/domain-checker'|link }}"><i class="fa fa-globe fa-fw"></i> Daftarkan Domain Baru
-  					  <a href="{{ 'client/logout'|link }}"><i class="fa fa-arrow-left fa-fw"></i> Logout
+  					  <a href="{{ '/order/domain-checker'|link }}"><i class="fa fa-globe fa-fw"></i> Pesan Domain
+  					  {% if profile.first_name %}
+  					  <a href="{{ 'client/logout'|link }}"><i class="fa fa-arrow-left fa-fw"></i> Logout </a>
+  					  {% endif %}
 			  </div>
 			</div>			
 

@@ -7,7 +7,7 @@
 		<!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">{{ ticket.subject }}
+                <h1 class="page-header">View Ticket - {{ ticket.subject }}
 					<small>{{ticket.helpdesk.name}}</small>
 				</h1>
 				<ol class="breadcrumb">
@@ -19,22 +19,51 @@
         <!-- /.row -->
 {% endblock %}
 {% block content %}
-		<ul class=" breadcrumb list-inline">
-			<li>{% trans 'Status' %}:<span class="label {% if ticket.status == "open" %}label-danger{% elseif ticket.status == "on_hold" %}label-warning{% elseif ticket.status == "closed" %}label-success{% else %}label-default{% endif %}">{{ mf.status_name(ticket.status) }}</span></li>
-			<li>{{ticket.created_at|date('Y-m-d h:i')}}</li>
-			{% if ticket.rel_type == 'order' and ticket.rel_id %}<li><strong>{% trans 'Related to' %}:</strong> <a href="{{ 'order/service/manage'|link }}/{{ ticket.rel_id }}">{% trans 'Service #' %} {{ ticket.rel_id }}</a></li>{% endif %}
-		</ul>		
-		<hr>
-
 		<div class="well">
 			<div class="row">
+				{% if ticket.status != "closed" %}
+					<div class="col-sm-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading" id="replyticket" style="font-size:16px;"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Reply</div>
+							<div class="panel-body">
+								<form method="post" action="" class="api_form" data-api-url="{{ 'api/client/support/ticket_reply'|link }}" data-api-reload="1">
+									<div class="control-group form-group">
+										<div class="controls">
+											<textarea id="tiny" rows="10" cols="100" class="form-control" name="content" maxlength="999" style="resize:none" required="required" data-iconlibrary="fa"></textarea>
+										</div>
+									</div>
+									<input type="hidden" name="id" value="{{ ticket.id }}">
+									<div align="center">
+								<input class="btn btn-primary" type="submit" value="Submit"> <a class="btn btn-default" href="{{ '/support'|link }}"">Cancel</a> </div>
+								</form>
+							</div>
+						</div>
+						
+					</div>
+				{% else %}
+				<div class="col-sm-12">
+					<div class="alert alert-warning text-center">
+					Ticket ini sudah ditutup. Silakan Submit Ticket Baru Apabila Masih Terdapat Kendala.
+					<p><small>{{ ticket.updated_at|timeago }} {% trans 'ago' %}</small></p>
+					</div>
+				</div>
+				{% endif %}
+				<div style="height : 20px" class="col-sm-12"></div>
 				{% for i, message in ticket.messages %}
-				<div class="col-sm-10{% if message.author.name != (profile.first_name ~ " " ~ profile.last_name) %} col-sm-offset-2{% endif %}">
-					<div class="panel {% if message.author.name != (profile.first_name ~ " " ~ profile.last_name) %}panel-success{% else %}panel-default{% endif %}">
-						<div class="panel-heading">
-							<img src="{{ message.author.email|gravatar }}?size=20" alt="{{ message.author.name }}" class="gravatar"/>
-							{{ message.author.name }}
+				<div class="ticketmsg col-sm-12">
+					<div class="panel {% if message.author.name != (profile.first_name ~ " " ~ profile.last_name) %}panel-techsupport{% else %}panel-client{% endif %}">
+						<div class="panel-heading" style="line-height:0.8em;">
+							<div class="row">
+							<div class="col-sm-8">
+							<table>
+								<tr><td rowspan="2" style="font-size:35px;"><i class="fa fa-user"> </i>&nbsp;</td><td style="font-size:16px;">{{ message.author.name }}</td></tr>
+								<tr><td style="font-size:12px;font-weight: bold; color: #000">{% if message.author.name != (profile.first_name ~ " " ~ profile.last_name) %}Tech Support{% else %}Client{% endif %}</td></tr>
+							</table>
+							</div>
+							<div class="col-sm-4">
 							<small class="pull-right">{{ message.created_at }}</small>
+							</div>
+							</div>
 						</div>
 						<div class="panel-body">
 							{{ message.content|bbmd }}
@@ -42,26 +71,6 @@
 					</div>
 				</div>
 				{% endfor %}
-				{% if ticket.status != "closed" %}
-					<div class="col-sm-10">
-						<form method="post" action="" class="api_form" data-api-url="{{ 'api/client/support/ticket_reply'|link }}" data-api-reload="1">
-							<div class="control-group form-group">
-								<div class="controls">
-									<textarea rows="10" cols="100" class="form-control" name="content" maxlength="999" style="resize:none" required="required" data-provide="markdown" data-iconlibrary="fa"></textarea>
-								</div>
-							</div>
-							<input type="hidden" name="id" value="{{ ticket.id }}">
-						<input class="btn btn-primary" type="submit" value="{% trans 'Post' %}">
-						</form>
-					</div>
-				{% else %}
-				<div class="col-sm-2 col-sm-offset-10">
-					<div class="alert alert-success text-center">
-					<i class="fa fa-check"></i> {{ mf.status_name(ticket.status) }}
-					<p><small>{{ ticket.updated_at|timeago }} {% trans 'ago' %}</small></p>
-					</div>
-				</div>
-				{% endif %}
 			</div>
 		</div>
 
@@ -71,7 +80,87 @@
 		<div class="text-center">
 			<a class="btn btn-default" href="{{ '/support'|link }}"><i class="fa fa-arrow-left"></i> {% trans 'Tickets list' %}</a>
 			{% if ticket.status != 'closed' %}
-			<a class="btn btn-success api" type="button" href="{{ 'api/client/support/ticket_close'|link({'id' : ticket.id}) }}" data-api-redirect="{{ 'support'|link }}" ><i class="fa fa-times"></i> {% trans 'Close ticket' %}</a>
+			<a id="close-ticket-a" class="btn btn-success api" type="button" href="{{ 'api/client/support/ticket_close'|link({'id' : ticket.id}) }}" data-api-redirect="{{ 'support'|link }}" ><i class="fa fa-times"></i> {% trans 'Close ticket' %}</a>
 			{% endif %}
 		</div>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"></script>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+
+				$('#sidebar3').prepend(`
+					<div class="panel panel-default">
+					  <div class="panel-heading"><i class="fa fa-ticket"></i>&nbsp;&nbsp;Ticket Information </div>
+					  <div class="panel-body categories" id="ticketinfo">
+					  		<p>
+					  			Ticket #{{ ticket.id }} - {{ ticket.subject }}<br/>
+					  			<span class="label {% if ticket.status == "open" %}label-success{% elseif ticket.status == "on_hold" %}label-warning{% elseif ticket.status == "closed" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(ticket.status) }}</span>
+					  		</p>
+					  		<p>
+					  			<span style="font-weight:bold">Department</span><br/>
+					  			{{ticket.helpdesk.name}}
+					  		</p>
+					  		<p>
+					  			<span style="font-weight:bold">Submitted</span><br/>
+					  			{{ticket.created_at|date('Y-m-d h:i')}}
+					  		</p>
+					  		<p>
+					  			<span style="font-weight:bold">Last Updated</span><br/>
+					  			{{ ticket.updated_at|timeago }} {% trans 'ago' %}
+					  		</p>
+
+					  </div>
+					  <div class="panel-footer" id="ticket-info-footer">
+					  	<button id="reply-btn" type="button" class="btn btn-sm btn-success" {% if ticket.status == 'closed' %} disabled="disabled" {% endif %} ><i class="fa fa-pencil"></i>&nbsp;&nbsp;Reply</button>
+					  	&nbsp;&nbsp;
+					  	<button id="close-ticket-btn" type="button" class="btn btn-sm btn-danger" {% if ticket.status == 'closed' %} disabled="disabled" {% endif %}><i class="fa fa-close"></i>&nbsp;&nbsp;Close</button>
+					  </div>
+
+					</div>
+
+					`);
+
+				tinymce.init({
+				  selector: '#tiny',
+				  setup: function (editor) {
+				      editor.on('change', function () {
+				          editor.save();
+				      });
+				  },
+				  height: 200,
+				  menubar: false,
+				  plugins: [
+				    'advlist autolink lists link image charmap print preview anchor textcolor',
+				    'searchreplace visualblocks code fullscreen',
+				    'insertdatetime media table contextmenu paste code help'
+				  ],
+				  toolbar: ' insert | image | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
+				});
+
+				n = 0;
+
+				$('.ticketmsg').each(function(index, el) {
+					$(this).prop({
+						id: 'msg-' + n
+					})
+					n++;
+				});
+
+				for (var i = n-1; i >=0 ; i--) {
+					console.log (i);
+					$('#msg-'+ (i-1)).insertAfter('#msg-'+i);
+				}
+
+				$('#reply-btn').click(function(event) {
+					tinymce.execCommand('mceFocus',false,'tiny');
+				});
+				
+				$('#close-ticket-btn').click(function(event) {
+					$('#close-ticket-a').click();
+				});
+
+			});
+		</script>
+
 {% endblock %}
