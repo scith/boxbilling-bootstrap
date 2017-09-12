@@ -43,7 +43,7 @@
 				<div class="col-md-12">
 					<div class="tiles clearfix">
 						<div class="row">
-							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=services'">
+							<div class="col-sm-3 col-xs-6 tile">
 								<a href="{{ '/order/service' | link }}">
 									<div class="icon"><i class="fa fa-cube"></i></div>
 									<div class="stat" id="service-stat">
@@ -60,7 +60,7 @@
 							{% endfor %}
 							</div>
 
-							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=domains'">
+							<div class="col-sm-3 col-xs-6 tile">
 								<a href="{{ '/order/service' | link }}">
 									<div class="icon"><i class="fa fa-globe"></i></div>
 									<div class="stat" id="domain-stat"><span style="color:#eee">0</span></div>
@@ -68,7 +68,7 @@
 									<div class="highlight bg-color-green"></div>
 								</a>
 							</div>
-							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='supporttickets.php'">
+							<div class="col-sm-3 col-xs-6 tile">
 								<a href="supporttickets.php">
 									<div class="icon"><i class="fa fa-comments"></i></div>
 									<div class="stat">
@@ -81,8 +81,8 @@
 									<div class="highlight bg-color-red"></div>
 								</a>
 							</div>
-							<div class="col-sm-3 col-xs-6 tile" onclick="window.location='clientarea.php?action=invoices'">
-								<a href="clientarea.php?action=invoices">
+							<div class="col-sm-3 col-xs-6 tile">
+								<a href="{{ '/invoice' | link }}">
 									<div class="icon"><i class="fa fa-credit-card"></i></div>
 									<div class="stat">
 										{{ client.invoice_get_list({"status":"unpaid"}).total }}
@@ -122,10 +122,25 @@
 										</a>
 									</h4>
 								</div>
-								<div class="list-group text-center">
-									{% set services = client.order_get_list({"per_page":10, "page":request.page, "hide_addons":1, "status":"active"}) %}
+								<div class="list-group text-left service-get-list">
+									{% set services = client.order_get_list({"hide_addons":1, "status":"active"}) %}
 									{% for i, service in services.list %}
-									<a href="{{ '/order/service/manage'|link }}/{{service.id}}" class="list-group-item">{{service.title}} #{{ service.id }}</a>
+	{% if service.config.domain.owndomain_sld %}
+	    <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}
+	    <span class='domain_tld'>{{ service.config.domain.owndomain_sld }}{{ service.config.domain.owndomain_tld }}</span></a>
+	{% else %}
+	    {% if service.config.domain.register_sld %}
+	        <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}
+	        <span class='domain_tld'>{{ service.config.domain.register_sld }}{{ service.config.domain.register_tld }}</span></a>
+	    {% else %}
+	        {% if service.config.register_sld %}
+	            <a href="{{ '/order/service/manage'|link }}/{{service.id}}">Domain Registration
+	            <span class='domain_tld'>{{ service.config.register_sld }}{{ service.config.register_tld }}</span></a>
+	        {% else %}
+	            <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}</a>
+	        {% endif %}
+	    {% endif %}
+	{% endif %}
 									{% endfor %}
 								</div>
 								<div class="panel-footer"></div>
@@ -145,7 +160,7 @@
 										<a class="btn btn-default btn-xs pull-right" href="{{ 'invoice'|link }}">{% trans 'All Invoices' %}</a>
 									</h4>
 								</div>
-								<div class="list-group text-center">
+								<div class="list-group list-invoices text-center">
 									{% set unpaid_invoices = client.invoice_get_list({"status":"unpaid", "per_page":10}).list %}
 									{% for i, invoice in unpaid_invoices %}
 									<a href="{{ 'invoice'|link }}/{{ invoice.hash }}" class="list-group-item">
@@ -412,6 +427,24 @@
 
 			$('#service-stat').html(service_count);
 			$('#domain-stat').html(domain_count);
+
+			$('.service-get-list a').each(function(index, el) {
+			    str = $(this).html();
+			    if (str) {
+			        if ( str.indexOf('for') > 0 ) {
+			            start = str.indexOf('for');
+			            end = str.indexOf('span');
+			            console.log(end);
+			            a = str.substring (0,start);
+			            b = str.substring (end-1);
+			            $(this).html(a + b);
+			        }
+			    }
+			    str = null;
+			});
+
 		});
+
+
 	</script>
 {% endblock %}

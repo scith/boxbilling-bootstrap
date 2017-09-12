@@ -664,3 +664,15 @@ form#change-password .control-group input {
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
+
+.service-get-list a {
+	padding: 5px 10px;	
+	border-top: solid 1px #ccc;
+	display: block;
+	color: #000;
+}
+
+.list-invoices a {
+	padding: 4px;
+	font-size: 13px;
+}

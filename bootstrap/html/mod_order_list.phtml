@@ -31,22 +31,22 @@
                     <td>
                     {% if order.config.domain.owndomain_sld %}
                         <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
-                        <span class='domain_tld'>{{ order.config.domain.owndomain_sld }}{{ order.config.domain.owndomain_tld }}</span>
+                        <span class='domain_tld'>{{ order.config.domain.owndomain_sld }}{{ order.config.domain.owndomain_tld }}</span></a>
                     {% else %}
                         {% if order.config.domain.register_sld %}
                             <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
-                            <span class='domain_tld'>{{ order.config.domain.register_sld }}{{ order.config.domain.register_tld }}</span>
+                            <span class='domain_tld'>{{ order.config.domain.register_sld }}{{ order.config.domain.register_tld }}</span></a>
                         {% else %}
                             {% if order.config.register_sld %}
                                 <a href="{{ '/order/service/manage'|link }}/{{order.id}}">Domain Registration
-                                <span class='domain_tld'>{{ order.config.register_sld }}{{ order.config.register_tld }}</span>
+                                <span class='domain_tld'>{{ order.config.register_sld }}{{ order.config.register_tld }}</span></a>
                             {% else %}
-                                <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+                                <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}</a>
                             {% endif %}
                         {% endif %}
                     {% endif %}
 
-                    </a></td>
+                    </td>
                     <td>{{  order.total | money(order.currency) }} {% if order.period%}<span class="order_period">{{ order.period | period_title }}</span>{% endif %}</td>
                     <td>{{order.expires_at|date('d-m-Y')}}</td>
                     <td><span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span></td>
