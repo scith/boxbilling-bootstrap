@@ -83,19 +83,13 @@
         			  <div class="panel-heading"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Categories </div>
         			  <div class="panel-body categories">
 							{% for i, category in guest.product_category_get_list.list %}
-								<a href="#collapse-cat{{category.id}}" aria-controls="collapse-cat{{category.id}}" role="tab" data-toggle="tab">{{ category.title }}</a>
+								<a class="product-category" href="#collapse-cat{{category.id}}" aria-controls="collapse-cat{{category.id}}" role="tab" data-toggle="tab">{{ category.title }}</a>
 							{% endfor %}
         			  </div>
         			</div>
         			`)		
 
         		$('.product-category').eq(0).click();
-
-        		$('#accordion .panel').each(function(index, el) {
-        			count = $(this).find('.list-group-item').length;
-        			$(this).find('.list-group-item').addClass('col-md-' + (12 / count) ) ;
-
-        		});
 
         	});
         </script>

@@ -199,4 +199,14 @@ $(function() {
     }
 });
 </script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        if ($('h1.page-header').text()=='Free Shared Hosting') {
+            $('input[name="domain[owndomain_tld]"]').prop({
+                value : '.freehost.bimasoft.id.web.id'
+            })
+        }
+    });
+</script>
 {% endblock %}

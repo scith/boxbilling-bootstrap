@@ -122,7 +122,7 @@
 								<p>{% trans 'Total amount will be deducted from account balance' %}</p>
 								{% endif %}
 							</div>
-							<p><button class="btn btn-primary-blue btn-lg" type="submit"><i class="fa fa-shopping-cart"></i> {% trans 'Checkout' %} {{ (cart.total + tax_amount) | money_convert }}</button></p>
+							<p><button class="ajaxsubmit btn btn-primary-blue btn-lg" type="submit"><i class="fa fa-shopping-cart"></i> {% trans 'Checkout' %} {{ (cart.total + tax_amount) | money_convert }}</button></p>
 						</form>
 						{% else %}	
 						<div class="text-right"><strong>{% trans 'Total:' %}</strong> {{ (cart.total + tax_amount) | money_convert }} ({% trans 'No VAT'%})</div>	
