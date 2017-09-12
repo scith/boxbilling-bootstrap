@@ -17,6 +17,9 @@ Please report issues and suggestions within this git. The theme is licensed unde
 - Copy the "bootstrap" folder in *bb-themes*
 - Configure the theme
 
+`If you need any customization / integration help. Freel free to contact me`
+
+
 Some Images :
 
 ### Dashboard
