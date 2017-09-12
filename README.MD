@@ -10,9 +10,24 @@ Please report issues and suggestions within this git. The theme is licensed unde
 - Easily customisable theme with Bootswatch pre-made templates
 - Customisable home page for non-clients
 - Beautiful and efficient dashboard
-- Markdown editors for tickets and forum messages
-
+- Markdown / Wysiwyg tinyMCE editors for tickets and forum messages
+- WHMCS Style User Interface
 
 ## Installation
 - Copy the "bootstrap" folder in *bb-themes*
 - Configure the theme
+
+Some Images :
+
+### Dashboard
+![](https://github.com/yokowasis/boxbilling-whmcs-bootstrap/raw/master/images/dashboard.png)
+
+### Order Page
+![](https://github.com/yokowasis/boxbilling-whmcs-bootstrap/blob/master/images/order.png)
+
+### Product and Services Page
+![](https://github.com/yokowasis/boxbilling-whmcs-bootstrap/raw/master/images/services.png)
+
+### Ticket
+![](https://github.com/yokowasis/boxbilling-whmcs-bootstrap/raw/master/images/tickets.png)
+
