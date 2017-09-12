@@ -269,7 +269,7 @@ a:hover {
 }
 
 #dashboard-support .list-group-item {
-	padding: 5px 10px;
+	padding: 5px 16px;
 }
 
 .bg-color-gold {
@@ -484,7 +484,11 @@ table.dataTable.no-footer {
 }
 
 table.dataTable.no-footer > tbody > tr:nth-child(odd) > td {
-	background: #FAFAFA;
+	background: #EAEAEA;
+}
+
+table.dataTable.no-footer > tbody > tr:nth-child(even) > td {
+	background: #FFF;
 }
 
 table.dataTable.no-footer td {
@@ -507,9 +511,6 @@ table.dataTable.no-footer td:first-child {
 	text-align: left;
 }
 
-table.dataTable.no-footer > tbody > tr:nth-child(even) > td {
-	background: #FFF;
-}
 
 .dataTables_info {
 	font-size: 12px;
@@ -666,13 +667,31 @@ form#change-password .control-group input {
 }
 
 .service-get-list a {
-	padding: 5px 10px;	
-	border-top: solid 1px #ccc;
+	padding: 5px 10px;
 	display: block;
 	color: #000;
+	border-bottom: solid 1px #ccc;
 }
 
 .list-invoices a {
-	padding: 4px;
 	font-size: 13px;
+}
+.service-get-list a,
+.list-invoices a {
+	padding: 5px 16px;	
+}
+
+a.list-group-item-danger:hover, 
+.navbar2 a.list-group-item:hover, 
+a.list-group-item-info:hover 
+{
+	background: #fff;
+}
+
+.dtt td {
+	cursor: pointer;
+}
+
+.dtt tr:hover td {
+	background: #dddddd !important;
 }

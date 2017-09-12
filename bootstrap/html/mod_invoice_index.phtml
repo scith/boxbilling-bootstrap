@@ -15,39 +15,51 @@
 {% endblock %}
 {% block content %}
 
+		<table class="dtt">
+			<thead>
+				<tr>
+					<th>Invoice #</th>
+					<th>Invoice Date</th>
+					<th>Due Date</th>
+					<th>Total</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% set paid_invoices = client.invoice_get_list({}) %}
+				{% for i, invoice in paid_invoices.list %}
+				<tr>
+					<td style="text-align: center">
+					<a href="{{ 'invoice'|link }}/{{ invoice.hash }}">
+					{{ "Invoice #%05s"|format(invoice.id) }}
+					</a>
+					</td>
+					<td>{{ invoice.created_at|date('d-m-Y') }}</td>
+					<td>{{ invoice.due_at|date('d-m-Y') }}</td>
+					<td>{{ invoice.total | money(invoice.currency) }}</td>
+					<td class="text-center">
+					{% if invoice.status == 'paid' %}
+						<span class="label label-success" style="margin:auto">Paid</span>
+					{% endif %}
+					{% if invoice.status == 'unpaid' %}
+						<span class="label label-danger" style="margin:auto">Unpaid</span>
+					{% endif %}
+					{% if invoice.status == 'refunded' %}
+						<span class="label label-info" style="margin:auto">Refunded</span>
+					{% endif %}
+					{% if invoice.status == 'canceled' %}
+						<span class="label label-default" style="margin:auto">Canceled</span>
+					{% endif %}
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
 		<!-- Service Tabs -->
         <div class="row">
             <div class="col-lg-12">
-				{% if client.invoice_get_list({"status":"unpaid"}).total > 0 %}
-					<div>
-						<h2>{% trans 'Unpaid' %}</h2>
-						<div class="list-group">
-							{% set unpaid_invoices = client.invoice_get_list({"status":"unpaid"}).list %}
-							{% for i, invoice in unpaid_invoices %}
-							<a href="{{ 'invoice'|link }}/{{ invoice.hash }}" class="list-group-item list-group-item-danger">
-								<strong>{{ "Invoice #%05s"|format(invoice.id) }}</strong>
-								- <i>{% trans 'Issue Date' %}:</i> {{ invoice.created_at|date('Y-m-d h:i') }} - <i>{% trans 'Due Date' %}:</i> <strong>{{ invoice.due_at|date('Y-m-d h:i') }}</strong>
-								
-								<span class="pull-right btn btn-danger btn-xs">{% trans 'Pay' %}: <strong>{{ invoice.total | money(invoice.currency) }}</strong></span>
-							</a>
-							{% else %}{% trans 'The list is empty' %}
-							{% endfor %}
-						</div>
-					</div>
-					<hr>
-				{% endif %}
-		
-				<h2>{% trans 'Paid' %}</h2>
 				<div class="list-group">
-					{% set paid_invoices = client.invoice_get_list({"per_page":10, "page":request.page, "status":"paid"}) %}
-					{% for i, invoice in paid_invoices.list %}
-					<a href="{{ 'invoice'|link }}/{{ invoice.hash }}" class="list-group-item list-group-item-success">
-						<strong>{{ "Invoice #%05s"|format(invoice.id) }}</strong>
-						- <i>{% trans 'Issue Date' %}:</i> {{ invoice.created_at|date('Y-m-d h:i') }} - <i>{% trans 'Paid at' %}:</i> {{ invoice.paid_at|date('Y-m-d h:i') }}
-						<span class="pull-right btn btn-success btn-xs">{% trans 'Paid' %}: <strong>{{ invoice.total | money(invoice.currency) }}</strong></span>
-					</a>
-					{% else %}{% trans 'The list is empty' %}
-					{% endfor %}
 				</div>
 				{% include "partial_pagination.phtml" with {'list': paid_invoices} %}
             </div>
@@ -58,3 +70,4 @@
 		</div>
 
 {% endblock %}
+

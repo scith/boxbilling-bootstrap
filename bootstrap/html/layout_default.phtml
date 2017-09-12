@@ -106,7 +106,7 @@
 					<li><a href="{{ 'cart'|link }}" title="{% trans 'Shopping cart' %}"><i class="fa fa-shopping-cart"></i> {% trans 'Shopping cart' %}</a></li>
 					{% if settings.side_menu_home %}<li class="visible-xs"><a href="{{ ''|link }}" title="{% trans 'Home' %}" ><i class="fa fa-home"></i> {% trans 'Home' %}</a></li>{% endif %}
 					{% if settings.side_menu_order %}<li class="visible-xs"><a href="{{ '/order'|link }}" title="{% trans 'Order' %}" ><i class="fa fa-shopping-cart"></i> {% trans 'Order' %}</a></li>{% endif %}
-					{% if settings.side_menu_blog and guest.extension_is_on({"mod":"news"}) %}<li class="visible-xs"><a href="{{ '/news'|link }}" title="{% trans 'Blog' %}" ><i class="fa fa-bullhorn"></i> {% trans 'Blog' %}</a></li>{% endif %}
+					{% if settings.side_menu_blog and guest.extension_is_on({"mod":"news"}) %}<li class="visible-xs"><a href="{{ '/news'|link }}" title="News" ><i class="fa fa-news"></i> News</a></li>{% endif %}
 					{% if settings.side_menu_forum and guest.extension_is_on({"mod":"forum"}) %}<li class="visible-xs"><a href="{{ '/forum'|link }}"><i class="fa fa-comments"></i> {% trans 'Forum' %}</a></li>{% endif %}
 					{% if settings.side_menu_kb and guest.extension_is_on({"mod":"kb"}) %}<li class="visible-xs"><a href="{{ 'kb'|link }}" title="{% trans 'Knowledge Base' %}"><i class="fa fa-graduation-cap"></i> {% trans 'Knowledge Base' %}</a></li>{% endif %}
 					{% if settings.side_menu_contact %}<li class="visible-xs"><a href="{{ '/support/contact-us'|link }}"><i class="fa fa-envelope"></i> {% trans 'Contact us' %}</a></li>{% endif %}

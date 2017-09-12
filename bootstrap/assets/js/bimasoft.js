@@ -43,6 +43,11 @@ jQuery(document).ready(function($) {
         $('#loaderwrapper').show();                                 
     });
 
+    $('body').on('click', '.dtt td', function(event) {
+        url = $(this).closest('tr').find('td').eq(0).find('a').prop('href');
+        window.location = url;
+    });
+
 
 });
 
