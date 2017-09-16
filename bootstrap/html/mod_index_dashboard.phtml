@@ -8,6 +8,10 @@
 	{% if not client %}{% set side_menu = 'hidden' %}{% endif %}
 {% endif %}
 
+{# ------------------------ put your Knowledge Base URL Here ------------------ #}
+{% set kb_site = 'https://wiki.bimasoft.web.id/' %}
+{# ------------------------ put your Knowledge Base URL Here ------------------ #}
+
 {# Content-before #}
 {% block content_before %}
 	{% if client %}
@@ -96,14 +100,12 @@
 				</div>
 
 				<div class="col-md-12 home-kb-search">
-					{% if settings.dash_kb and guest.extension_is_on({"mod":'kb'}) %}
-					<form method="get" action="https://wiki.bimasoft.web.id/" target="search-window">
+					<form method="get" action="{{ kb_site }}" target="search-window">
 						<div class="input-group">
 							<input type="text" name="s" class="form-control input-lg" placeholder="Masukkan pertanyaan disini untuk mendapatkan jawaban dari Knowledge Base...">
 							<i class="fa fa-search"></i>
 						</div>
 					</form>
-					{% endif %}
 				</div>
 
 				<div class="col-md-6">				
