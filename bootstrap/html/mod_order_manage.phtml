@@ -57,12 +57,13 @@
 		{% if order.status == 'active' %}<a class="btn btn-danger" data-toggle="modal" data-target="#cancelation">{% trans 'Request Cancellation' %}</a>{% endif %}
 	</p>
 
-	{% if order.title=='Divi' %}
+	{% if order.onetimelink %}
+
 
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<p>{{ order.description }}</p>
-			<a href="{{ order.onetimelink }}" class="btn btn-success btn-lg"><i class="fa fa-download"> </i>&nbsp;&nbsp;Download File</a>
+			<p>&nbsp;</p>
+			<a href="{{ '/order/service/manage/' | link }}/{{ order.id }}&download" class="btn btn-success btn-lg"><i class="fa fa-download"> </i>&nbsp;&nbsp;Download File</a>
 		</div>
 	</div>
 
