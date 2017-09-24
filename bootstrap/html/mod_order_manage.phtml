@@ -198,6 +198,7 @@
 		</div>
     </div>
 	<hr>
+	<div id="optional_manage">
 	{% if guest.system_template_exists({"file":service_partial})%}
 		{% set service = client.order_service({"id":order.id}) %}
 		{% include service_partial with {'order': order, 'service': service} %}
@@ -205,10 +206,12 @@
 	{% else %}
 		{# trans 'Service does not have configuration page' #}
 	{% endif %}
+	</div>
 
 	<div class="text-center">
 		<a class="btn btn-default" href="{{ '/order/service'|link }}"><i class="fa fa-arrow-left"></i> {% trans 'Back to services' %}</a>
 	</div>
+
 
 {% endblock %}
 
