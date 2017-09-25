@@ -71,6 +71,8 @@ jQuery(document).ready(function($) {
     $('#optional_manage a').each(function(index, el) {
         href = $(this).prop('href');
         if (href.indexOf('2031') !== -1) {
+            href = href.replace ('https','http');
+            href = href.replace ('http','https');
             $(this).before(`
                     <form id="cwpanel_login" target="cwpanel_window" action="`+ href +`login/index.php" method="post">
                         <input type="hidden" name="username" value="">
@@ -93,6 +95,37 @@ jQuery(document).ready(function($) {
                         $(".bootbox.modal").modal('hide');
                         $('#cwpanel_login input[name="username"]').val(username);
                         $('#cwpanel_login input[name="password"]').val(randompass);
+                        $('#cwpanel_login').submit();
+                    }
+                }, 300);
+            });
+        }
+        if (href.indexOf('/cpanel') !== -1) {
+            href = href.replace ('/cpanel',':2083')
+            href = href.replace ('https','http');
+            href = href.replace ('http','https');
+            $(this).before(`
+                    <form id="cwpanel_login" target="cwpanel_window" action="`+ href +`/login/" method="post">
+                        <input type="hidden" name="user" value="">
+                        <input type="hidden" name="pass" value="">
+                        <input type="hidden" name="login" value="login">
+                        <input type=button class='btn btn-primary' id="cwpanel_login_btn" value="Login to cPanel">
+                    </form>`);
+            $(this).remove();
+            $('#cwpanel_login_btn').click(function(event) {
+                window.open(href,'cwpanel_window');
+                randompass = generatePassword();
+                username = $('#tab-details').find('tr').eq(3).find('td').eq(1).text();
+                $('#optional_manage input[type="password"][name="password"]').val(randompass);
+                $('#optional_manage input[type="password"][name="password_confirm"]').val(randompass);
+                $('#optional_manage button[type=submit][value="Change password"]').click();
+                var myVar = setInterval(function(){
+                    if (($(".bootbox").data('bs.modal') || {}).isShown) {
+                        clearInterval(myVar);
+                        $('#loaderwrapper').hide();
+                        $(".bootbox.modal").modal('hide');
+                        $('#cwpanel_login input[name="user"]').val(username);
+                        $('#cwpanel_login input[name="pass"]').val(randompass);
                         $('#cwpanel_login').submit();
                     }
                 }, 300);
