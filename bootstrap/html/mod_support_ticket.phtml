@@ -84,8 +84,6 @@
 			{% endif %}
 		</div>
 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"></script>
-
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 
@@ -120,23 +118,6 @@
 					</div>
 
 					`);
-
-				tinymce.init({
-				  selector: '#tiny',
-				  setup: function (editor) {
-				      editor.on('change', function () {
-				          editor.save();
-				      });
-				  },
-				  height: 200,
-				  menubar: false,
-				  plugins: [
-				    'advlist autolink lists link image charmap print preview anchor textcolor',
-				    'searchreplace visualblocks code fullscreen',
-				    'insertdatetime media table contextmenu paste code help'
-				  ],
-				  toolbar: ' insert | image | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
-				});
 
 				n = 0;
 

@@ -1,11 +1,25 @@
 function generatePassword() {
-    var length = 8,
-        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-    for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
+    len = 21;
+    var length = (len)?(len):(10);
+    var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
+    var numeric = '0123456789';
+    var punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+    var password = "";
+    var character = "";
+    var crunch = true;
+    while( password.length<length ) {
+       entity1 = Math.ceil(string.length * Math.random()*Math.random());
+       entity2 = Math.ceil(numeric.length * Math.random()*Math.random());
+       entity3 = Math.ceil(punctuation.length * Math.random()*Math.random());
+       hold = string.charAt( entity1 );
+       hold = (entity1%2==0)?(hold.toUpperCase()):(hold);
+       character += hold;
+       character += numeric.charAt( entity2 );
+       character += punctuation.charAt( entity3 );
+       password = character;
     }
-    return retVal;
+    return password;
+
 }
 
 function extractHostname(url) {
@@ -41,6 +55,23 @@ function extractRootDomain(url) {
 
 jQuery(document).ready(function($) {
 
+    tinymce.init({
+      selector: '#tiny',
+      setup: function (editor) {
+          editor.on('change', function () {
+              editor.save();
+          });
+      },
+      height: 200,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor textcolor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code help'
+      ],
+      toolbar: ' insert | image | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
+    });
+
 	$('.dtt').DataTable({
 		"initComplete": function(settings, json) {
 		    $('.dataTables_filter input[type=search]').prop({
@@ -74,15 +105,15 @@ jQuery(document).ready(function($) {
             href = href.replace ('https','http');
             href = href.replace ('http','https');
             $(this).before(`
-                    <form id="cwpanel_login" target="cwpanel_window" action="`+ href +`login/index.php" method="post">
+                    <form id="cwpanel_login" style="float:left;margin-right : 10px" target="cwpanel_window" action="`+ href +`login/index.php" method="post">
                         <input type="hidden" name="username" value="">
                         <input type="hidden" name="password" value="">
                         <input type="hidden" name="commit" value="login">
                         <input type=button class='btn btn-primary' id="cwpanel_login_btn" value="Login to CWPanel">
-                    </form>`);
+                    </form><div style="clear:both"></div>`);
             $(this).remove();
             $('#cwpanel_login_btn').click(function(event) {
-                window.open(href + 'login/index2.php','cwpanel_window');
+                window.open("https://client.bimasoft.web.id/wait.html",'cwpanel_window');
                 randompass = generatePassword();
                 username = $('#tab-details').find('tr').eq(3).find('td').eq(1).text();
                 $('#optional_manage input[type="password"][name="password"]').val(randompass);
@@ -105,15 +136,15 @@ jQuery(document).ready(function($) {
             href = href.replace ('https','http');
             href = href.replace ('http','https');
             $(this).before(`
-                    <form id="cwpanel_login" target="cwpanel_window" action="`+ href +`/login/" method="post">
+                    <form id="cwpanel_login" style="float:left;margin-right : 10px" target="cwpanel_window" action="`+ href +`/login/" method="post">
                         <input type="hidden" name="user" value="">
                         <input type="hidden" name="pass" value="">
                         <input type="hidden" name="login" value="login">
                         <input type=button class='btn btn-primary' id="cwpanel_login_btn" value="Login to cPanel">
-                    </form>`);
+                    </form><div style="clear:both"></div>`);
             $(this).remove();
             $('#cwpanel_login_btn').click(function(event) {
-                window.open(href,'cwpanel_window');
+                window.open("https://client.bimasoft.web.id/wait.html",'cwpanel_window');
                 randompass = generatePassword();
                 username = $('#tab-details').find('tr').eq(3).find('td').eq(1).text();
                 $('#optional_manage input[type="password"][name="password"]').val(randompass);

@@ -17,10 +17,8 @@
     <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}" />
 	
 	<!-- Bootstrap Core CSS -->
-	{% if settings.theme != "default" %}<link href="{{ 'css/themes/theme-' | asset_url }}{{ settings.theme }}.min.css" rel="stylesheet">
-	{% else %}<link href="{{ 'css/bootstrap.min.css' | asset_url }}" rel="stylesheet">
-	{% endif %}
-	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">	
+
 	<!-- Bootstrap Markdown Editor -->
     <link href="{{ 'css/bootstrap-markdown.min.css' | asset_url }}" rel="stylesheet">
 
@@ -35,26 +33,28 @@
 	{% endif %}
 
     <!-- Custom Fonts -->
-    <link href="{{ 'font-awesome/css/font-awesome.min.css' | asset_url }}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<!-- jQuery -->
-    <script src="{{ 'js/jquery.js' | asset_url }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 	<!-- BoxBilling -->
     <script src="{{ 'js/bb-jquery.js' | asset_url }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ 'js/bootstrap.min.js' | asset_url }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<!-- Bootstrap Markdown Editor -->
-	<script src="{{ 'js/bootstrap-markdown.js' | asset_url }}"></script>
-	<script src="{{ 'js/to-markdown.js' | asset_url }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/to-markdown/3.1.0/to-markdown.min.js"></script>
 	<script src="{{ 'js/markdown.js' | asset_url }}"></script>
 
 	<!-- Data Tables -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/css/jquery.dataTables.min.css">
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.6.6/tinymce.min.js"></script>
+
 
 	<!-- Custom CSS/JS -->
 	<link href="{{ 'css/bimasoft.css' | asset_url }}" rel="stylesheet" type="text/css">

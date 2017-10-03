@@ -139,7 +139,12 @@
 	            <a href="{{ '/order/service/manage'|link }}/{{service.id}}">Domain Registration
 	            <span class='domain_tld'>{{ service.config.register_sld }}{{ service.config.register_tld }}</span></a>
 	        {% else %}
-	            <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}</a>
+	        	{% if service.config.domain.transfer_sld %}
+	        	    <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}
+	        	    <span class='domain_tld'>{{ service.config.domain.transfer_sld }}{{ service.config.domain.transfer_sld }}</span></a>
+	        	{% else %}
+	            	<a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}</a>
+		        {% endif %}
 	        {% endif %}
 	    {% endif %}
 	{% endif %}
@@ -267,7 +272,12 @@
 	            <a href="{{ '/order/service/manage'|link }}/{{order.id}}">Domain Registration
 	            <span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span><span class='domain_tld'>{{ order.config.register_sld }}{{ order.config.register_tld }}</span></a>
 	        {% else %}
-	            <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}<span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span></a>
+	        	{% if order.config.domain.transfer_sld %}
+	        	    <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+	        	    <span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span><span class='domain_tld'>{{ order.config.domain.transfer_sld }}{{ order.config.domain.transfer_tld }}</span></a>
+	        	{% else %}
+		            <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}<span class="pull-right label {% if order.status == "active" %}label-success{% elseif order.status == "pending_setup" %}label-warning{% elseif order.status == "failed_setup" %}label-danger{% else %}label-default{% endif %}">{{ mf.status_name(order.status) }}</span></a>
+		        {% endif %}
 	        {% endif %}
 	    {% endif %}
 	{% endif %}
@@ -450,11 +460,11 @@
 
 			$('.service-get-list a').each(function(index, el) {
 			    str = $(this).html();
+			    console.log (str);
 			    if (str) {
 			        if ( str.indexOf('for') > 0 ) {
 			            start = str.indexOf('for');
 			            end = str.indexOf('span');
-			            console.log(end);
 			            a = str.substring (0,start);
 			            b = str.substring (end-1);
 			            $(this).html(a + b);

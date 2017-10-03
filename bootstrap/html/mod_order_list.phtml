@@ -41,7 +41,12 @@
                                 <a href="{{ '/order/service/manage'|link }}/{{order.id}}">Domain Registration
                                 <span class='domain_tld'>{{ order.config.register_sld }}{{ order.config.register_tld }}</span></a>
                             {% else %}
-                                <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}</a>
+                                {% if order.config.domain.transfer_sld %}
+                                    <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}
+                                    <span class='domain_tld'>{{ order.config.domain.transfer_sld }}{{ order.config.domain.transfer_tld }}</span></a>
+                                {% else %}
+                                    <a href="{{ '/order/service/manage'|link }}/{{order.id}}">{{order.title}}</a>
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     {% endif %}
