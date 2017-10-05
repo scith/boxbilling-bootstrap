@@ -53,6 +53,26 @@ function extractRootDomain(url) {
 
 jQuery(document).ready(function($) {
 
+    tinymce.init({
+      selector: '#tiny',
+      setup: function (editor) {
+          editor.on('change', function () {
+              editor.save();
+          });
+      },
+      height: 200,
+      menubar: false,
+      fontsize_formats: "8px 10px 12px 14px 18px 24px 36px",
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor textcolor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code help'
+      ],
+      toolbar: ' insert | image | link | styleselect | fontsizeselect bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat '
+    });
+    $('#tiny').after(`<p style="margin-top:10px;margin-left:10px;font-size: 12px;"><a href="https://uploadfiles.io" target="uploadfiles.io"><i class='fa fa-upload'> </i> Upload Files</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://dropbox.com" target="uploadfiles.io"><i class='fa fa-dropbox'> </i> Dropbox</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://drive.google.com" target="uploadfiles.io"><i class='fa fa-cloud-upload'> </i> Google Drive</a></p>`);
+
+
 	$('.dtt').DataTable({
 		"initComplete": function(settings, json) {
 		    $('.dataTables_filter input[type=search]').prop({
