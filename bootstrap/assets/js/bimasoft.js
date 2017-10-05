@@ -10,12 +10,10 @@ function generatePassword() {
     while( password.length<length ) {
        entity1 = Math.ceil(string.length * Math.random()*Math.random());
        entity2 = Math.ceil(numeric.length * Math.random()*Math.random());
-       entity3 = Math.ceil(punctuation.length * Math.random()*Math.random());
        hold = string.charAt( entity1 );
        hold = (entity1%2==0)?(hold.toUpperCase()):(hold);
        character += hold;
        character += numeric.charAt( entity2 );
-       character += punctuation.charAt( entity3 );
        password = character;
     }
     return password;
@@ -54,23 +52,6 @@ function extractRootDomain(url) {
 }
 
 jQuery(document).ready(function($) {
-
-    tinymce.init({
-      selector: '#tiny',
-      setup: function (editor) {
-          editor.on('change', function () {
-              editor.save();
-          });
-      },
-      height: 200,
-      menubar: false,
-      plugins: [
-        'advlist autolink lists link image charmap print preview anchor textcolor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table contextmenu paste code help'
-      ],
-      toolbar: ' insert | image | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat '
-    });
 
 	$('.dtt').DataTable({
 		"initComplete": function(settings, json) {

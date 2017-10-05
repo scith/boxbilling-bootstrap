@@ -141,7 +141,7 @@
 	        {% else %}
 	        	{% if service.config.domain.transfer_sld %}
 	        	    <a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}
-	        	    <span class='domain_tld'>{{ service.config.domain.transfer_sld }}{{ service.config.domain.transfer_sld }}</span></a>
+	        	    <span class='domain_tld'>{{ service.config.domain.transfer_sld }}{{ service.config.domain.transfer_tld }}</span></a>
 	        	{% else %}
 	            	<a href="{{ '/order/service/manage'|link }}/{{service.id}}">{{service.title}}</a>
 		        {% endif %}
