@@ -57,6 +57,18 @@
 		{% if order.status == 'active' %}<a class="btn btn-danger" data-toggle="modal" data-target="#cancelation">{% trans 'Request Cancellation' %}</a>{% endif %}
 	</p>
 
+	{% if order.onetimelink %}
+
+
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<p>&nbsp;</p>
+			<a href="{{ '/order/service/manage/' | link }}/{{ order.id }}&download" class="btn btn-success btn-lg"><i class="fa fa-download"> </i>&nbsp;&nbsp;Download File</a>
+		</div>
+	</div>
+
+	{% endif %}
+
     <div class="modal fade" id="cancelation" tabindex="-1" role="dialog" aria-labelledby="{% trans 'Request Cancellation' %}">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -186,6 +198,7 @@
 		</div>
     </div>
 	<hr>
+	<div id="optional_manage">
 	{% if guest.system_template_exists({"file":service_partial})%}
 		{% set service = client.order_service({"id":order.id}) %}
 		{% include service_partial with {'order': order, 'service': service} %}
@@ -193,10 +206,12 @@
 	{% else %}
 		{# trans 'Service does not have configuration page' #}
 	{% endif %}
+	</div>
 
 	<div class="text-center">
 		<a class="btn btn-default" href="{{ '/order/service'|link }}"><i class="fa fa-arrow-left"></i> {% trans 'Back to services' %}</a>
 	</div>
+
 
 {% endblock %}
 
@@ -208,6 +223,7 @@ $(function() {
     $('#renewal-button').bind('click',function(event){
 		bootbox.confirm("{% trans 'Are you sure?' %}", function(result) {
 			if(result){
+			  $('#loaderwrapper').show();                                 
 			  bb.post(
 					'client/invoice/renewal_invoice',
 					{order_id: {{order.id}} },
@@ -217,6 +233,34 @@ $(function() {
 				);
 			}
 		}); 
+    });
+    
+    $('#tickets form').submit(function(){
+    	$('#loaderwrapper').show();                                 
+        bb.post(
+            'client/support/ticket_create',
+            $(this).serialize(),
+            function(result) {
+                bb.msg('Ticket was submitted. If you want to track conversation please go to support section');
+                $('#tickets').modal('hide');
+                $('#loaderwrapper').hide();                                 
+            }
+        );
+        return false;
+    });
+
+    $('#cancelation form').submit(function(){
+    	$('#loaderwrapper').show();                                 
+        bb.post(
+            'client/support/ticket_create',
+            $(this).serialize(),
+            function(result) {
+                bb.msg('Service cancellation request received');
+                $('#cancelation').modal('hide');
+                $('#loaderwrapper').hide();                                 
+            }
+        );
+        return false;
     });
 });
 </script>

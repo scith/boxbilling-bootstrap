@@ -21,14 +21,6 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <ul id="myTab" class="nav nav-tabs nav-justified">
-					<li class="active"><a href="#tab-details" data-toggle="tab"><i class="fa fa-user"></i> {% trans 'Details' %}</a></li>
-					<li><a href="#tab-password" data-toggle="tab"><i class="fa fa-key"></i> {% trans 'Password' %}</a></li>
-					<li><a href="#tab-gravatar" data-toggle="tab"><i class="fa fa-camera"></i> {% trans 'Gravatar' %}</a></li>
-					<li><a href="#tab-currency" data-toggle="tab"><i class="fa fa-money"></i> {% trans 'Currency' %}</a></li>
-					<li><a href="#tab-api" data-toggle="tab"><i class="fa fa-plug"></i> {% trans 'API' %}</a></li>
-                </ul>
-
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade active in" id="tab-details">
 						<h4>{% trans 'Update profile' %}</h4>
@@ -189,5 +181,25 @@
 
             </div>
         </div>
+
+        <script type="text/javascript">
+        	jQuery(document).ready(function($) {
+        		$('#sidebar3').prepend(`
+        			<div class="panel panel-default">
+        			  <div class="panel-heading"><i class="fa fa-user"></i>&nbsp;&nbsp;My Account </div>
+        			  <div class="panel-body categories" id="my-accounts-panel">
+		                  <ul>
+		  					<li class="active"><a href="#tab-details" data-toggle="tab"><i class="fa fa-user"></i>&nbsp;&nbsp; {% trans 'Details' %}</a></li>
+		  					<li><a href="#tab-password" data-toggle="tab"><i class="fa fa-key"></i>&nbsp;&nbsp; {% trans 'Password' %}</a></li>
+		  					<li><a href="#tab-gravatar" data-toggle="tab"><i class="fa fa-camera"></i>&nbsp;&nbsp; {% trans 'Gravatar' %}</a></li>
+		  					<li><a href="#tab-currency" data-toggle="tab"><i class="fa fa-money"></i>&nbsp;&nbsp; {% trans 'Currency' %}</a></li>
+		  					<li><a href="#tab-api" data-toggle="tab"><i class="fa fa-plug"></i>&nbsp;&nbsp; {% trans 'API' %}</a></li>
+		                  </ul>
+        			  </div>
+        			</div>
+        			`)		
+
+        	});
+        </script>
 
 {% endblock %}
